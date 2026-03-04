@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,5 +79,41 @@ namespace AzureQueues
                 Console.WriteLine("Message deleted");
             }
         }
+
+        public void AddQueueBase64()
+        {
+
+
+            try
+            {
+                string _message;
+                if (_client.Exists())
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        _message = $"Hello this is a test message {i}";
+
+                        //convert the message to base64 string
+                        var txtbytes=Encoding.UTF8.GetBytes(_message);
+                        string Base64String=System.Convert.ToBase64String(txtbytes);
+
+                        _client.SendMessage(Base64String);
+                    }
+                    Console.WriteLine("All the messages have been sent");
+                }
+                else
+                {
+                    Console.WriteLine("Queue does not exist");
+                }
+
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Error when inserting into Queue " + e.Message);
+            }
+        }
+
     }
 }

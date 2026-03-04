@@ -1,6 +1,7 @@
 ﻿using AzureQueues;
 
 Azure_Queue aq = new Azure_Queue();
-aq.ReceiveMsg();
+aq.AddQueueBase64();
+
 
 Console.ReadKey();

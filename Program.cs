@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using AzureQueues;
+
+Azure_Queue aq = new Azure_Queue();
+aq.ReceiveMsg();
+
+Console.ReadKey();
